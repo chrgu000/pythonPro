@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<title>Document</title>
+<!-- 			
+销售家		397528B49A2F4C0F902EFD6BD8AC1756
+典道体育		A3A9303CCD354182BC3AEF891828673F
+云客测试帐号	2452C92B1ADC46E0AC633EBCF19DD7D4
+回家吃饭		B2C9747604614E79A8CB7CBC92D94891
+眼盟			D0F4EC5EB673434A9C42808C3AE4ACD9
+简道云		DC2AC266CC974A8BB77BD943AC6B5BCD
+芮艾			4DA20D6C767842EBA12758917FFFCCC0
+码市			E6D60E7A79264FBA9156E62E46C36F45 
+
+刘紫微 		304BE63617C340B481B690629F772E34
+-->
+</head>
+<body>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
+	<script type="text/javascript">
+
+		// 测试getSynonym方法
+		$.post("http://localhost:9300/getSynonym", {words:"风险 租赁", field:"comName"}, function(data,status){
+			console.log("loaclhost")
+			console.log(data)
+		})	// // 测试getSynonym方法
+		$.post("http://localhost:9300/getSynonym", {words:"商业 贸易 电话 火车", field:"mainproduct"},  function(data,status){
+			console.log("loaclhost")
+			console.log(data)
+		})	// // 测试getSynonym方法
+		$.post("http://localhost:9300/getSynonym", {words:"销售 经理 顾问", field:"position"}, function(data,status){
+			console.log("loaclhost")
+			console.log(data)
+		})	
+
+		// 测试getSynonym方法
+		$.post("http://123.56.203.191:9300/getSynonym", {words:"风险 租赁", field:"comName"}, function(data,status){
+			console.log(data)
+		})
+		$.post("http://123.56.203.191:9300/getSynonym", {words:"商业 贸易 电话 火车", field:"mainproduct"}, function(data,status){
+			console.log(data)
+		})
+		$.post("http://123.56.203.191:9300/getSynonym", {words:"销售 经理 顾问", field:"position"}, function(data,status){
+			console.log(data)
+		})
+
+		// 测试getKeywordsByID方法
+		$.post("http://localhost:9300/getKeywordsByID", {ID:"2452C92B1ADC46E0AC633EBCF19DD7D4"}, function(data,status){
+			console.log(data)
+		});
+
+		// // 测试getKeywordsByID方法
+		// $.post("http://123.56.203.191:9300/getKeywordsByID", {ID:"2452C92B1ADC46E0AC633EBCF19DD7D4"}, function(data,status){
+		// 	console.log(data)
+		// });
+
+		// 测试getRecommend方法
+		data={
+			ID:"2452C92B1ADC46E0AC633EBCF19DD7D4",
+			geo: ['39.86', '116.37', '39.83', '179.0'], 
+			employeeNum: '10', 
+			position: '销售', 
+			registrationYear: '2010', 
+			comname: '商贸', 
+			city: '石家庄', 
+			comname_mustnot: ' 科技 ', 
+			province: '河北', 
+			comname_list: '风险 管理', 
+			companyCode: 'yunkecn', 
+			business_list: '投资 理财',
+			clueNum: "100",
+			recoMode: "recoByKeywords"		// 通过主营产品或经营范围的关键词推荐
+			// recoMode: "recoByInfovect"	// 通过公司简介推荐
+			// recoMode: "justSearch"		// 仅搜索
+		};
+
+		// 搜索测试
+		data1 = {
+			ID:"2452C92B1ADC46E0AC633EBCF19DD7D4",
+			comname_list: '工商 国家工商 工商局 管理 管理模式 管理制度', 
+			business_list: '保险 人寿保险 保险代理',
+			employeeNum: '10', 
+			position: '法人', 
+			province: '河北', 
+			city: '石家庄', 
+			comname_mustnot: ' 科技 ', 
+			companyCode: 'yunkecn', 
+			clueNum: "100",
+			recoMode: "justSearch"		// 仅搜索
+		}
+		//
+		data2 = {
+			ID:"2452C92B1ADC46E0AC633EBCF19DD7D4",
+			comname_list: '风险 管理', 
+			business_list: '投资 理财',
+			employeeNum: '10', 
+			position: '销售', 
+			province: '河北', 
+			city: '石家庄', 
+			comname_mustnot: ' 科技 ', 
+			companyCode: 'yunkecn', 
+			clueNum: "100",
+			recoMode: "justSearch"		// 仅搜索
+		}
+		data3 = {
+			ID:"2452C92B1ADC46E0AC633EBCF19DD7D4",
+			comname_list: '汽车', 
+			business_list: '售后 服务',
+			position:'技术岗位'
+		}
+		data4 = {
+			ID:"2452C92B1ADC46E0AC633EBCF19DD7D4",
+			comname_list: '电脑 科技', 
+			business_list: '软件 开发 技术 服务',
+		}
+		data5 = {
+			ID:"2452C92B1ADC46E0AC633EBCF19DD7D4",
+			comname_list: '电脑 科技', 
+			business_list: '软件 开发 技术 服务',
+			province:" 北京"
+		}
+
+		$.post("http://localhost:9300/getRecommend",data1,function(data,status){
+			console.log(data)
+		})
+
+		// $.post("http://123.56.203.191:9300/getRecommend",data3,function(data,status){
+		// 	console.log(data)
+		// })
+
+		data = {
+			com_code:"yunkecn",
+			addr_lonlat:[116.3,35.1],
+			mongoids:["3452","132463","284522","124677","123463243332"]
+		}
+		$.post("http://localhost:9300/getScore",{},function(data,status){
+			console.log(data)
+		})
+	</script>
+</body>
+</html>
