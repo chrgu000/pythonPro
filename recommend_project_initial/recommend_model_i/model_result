@@ -1,0 +1,127 @@
+实验结果遵循单一变量原则
+
+1、gdbt特征选择后对结果是否有影响？
+训练正样本个数：371
+训练负样本个数：300
+训练样本个数：671
+训练集数据样本数，特征数：(671, 70000)
+labels数组长度：(671, 1)
+
+    gbdt+lr confusion matrix,auc,logloss,classification:
+        [[131   9]
+         [ 45 151]]
+        0.898524052478
+        0.372677105468
+                     precision    recall  f1-score   support
+             class0       0.74      0.94      0.83       140
+             class1       0.94      0.77      0.85       196
+        avg / total       0.86      0.84      0.84       336
+
+    lr confusion matrix,auc,logloss,classification:
+        [[140   0]
+         [146  50]]
+        0.563702623907
+        0.681671130411
+                     precision    recall  f1-score   support
+             class0       0.49      1.00      0.66       140
+             class1       1.00      0.26      0.41       196
+        avg / total       0.79      0.57      0.51       336
+
+    如果不使用gbdt特征组合，那么结果更倾向于把负样本错分成正样本，gbdt+lr效果更好
+    ***********************************************************************************
+        gbdt+lr confusion matrix,auc,logloss,classification:
+    [[138  22]
+     [ 29 147]]
+    0.904989346591
+    0.377572757982
+                 precision    recall  f1-score   support
+
+         class0       0.83      0.86      0.84       160
+         class1       0.87      0.84      0.85       176
+
+    avg / total       0.85      0.85      0.85       336
+
+    lr confusion matrix,auc,logloss,classification:
+    [[  0 160]
+     [  0 176]]
+    0.548259943182
+    0.734390133111
+                 precision    recall  f1-score   support
+
+         class0       0.00      0.00      0.00       160
+         class1       0.52      1.00      0.69       176
+
+    avg / total       0.27      0.52      0.36       336
+******************************************************************************
+gbdt+lr confusion matrix,auc,logloss,classification:
+[[149   6]
+ [ 38 143]]
+0.925432186776
+0.333710619107
+             precision    recall  f1-score   support
+
+     class0       0.80      0.96      0.87       155
+     class1       0.96      0.79      0.87       181
+
+avg / total       0.88      0.87      0.87       336
+
+lr confusion matrix,auc,logloss,classification:
+[[  0 155]
+ [  0 181]]
+0.639529495634
+0.679622870537
+             precision    recall  f1-score   support
+
+     class0       0.00      0.00      0.00       155
+     class1       0.54      1.00      0.70       181
+
+avg / total       0.29      0.54      0.38       336
+**************************************************************************************
+gbdt+lr confusion matrix,auc,logloss,classification:
+[[137   4]
+ [ 18 177]]
+0.948336061102
+0.233462671066
+             precision    recall  f1-score   support
+
+     class0       0.88      0.97      0.93       141
+     class1       0.98      0.91      0.94       195
+
+avg / total       0.94      0.93      0.93       336
+
+lr confusion matrix,auc,logloss,classification:
+[[ 59  82]
+ [  9 186]]
+0.892671394799
+0.644993563618
+             precision    recall  f1-score   support
+
+     class0       0.87      0.42      0.56       141
+     class1       0.69      0.95      0.80       195
+
+avg / total       0.77      0.73      0.70       336
+*******************************************************************************************
+gbdt+lr confusion matrix,auc,logloss,classification:
+[[152   6]
+ [ 13 165]]
+0.955038401365
+0.21301615218
+             precision    recall  f1-score   support
+
+     class0       0.92      0.96      0.94       158
+     class1       0.96      0.93      0.95       178
+
+avg / total       0.94      0.94      0.94       336
+
+lr confusion matrix,auc,logloss,classification:
+[[154   4]
+ [136  42]]
+0.754444602475
+0.672890633728
+             precision    recall  f1-score   support
+
+     class0       0.53      0.97      0.69       158
+     class1       0.91      0.24      0.38       178
+
+avg / total       0.73      0.58      0.52       336
+*******************************************************************8

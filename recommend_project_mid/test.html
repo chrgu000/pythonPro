@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title> title</title>
+</head>
+<body>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
+	<script type="text/javascript">
+
+		// 测试recommendHandler方法
+		$.post("http://123.56.203.191:8000/recommend", {companyCode:"yunkecn"}, function(data){
+		console.log("loaclhost")
+		console.log(data)
+		})	// // 测试recommendHandler方法
+		
+		// 测试cacheHandler方法
+		$.post("http://123.56.203.191:8000/recommend/cache", {companyCode:"yunkecn"}, function(data){
+		console.log("loaclhost")
+		console.log(data)
+		})	// // 测试cacheHandler方法
+		
+	</script>	
+</body>
+</html>

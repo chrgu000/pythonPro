@@ -1,0 +1,11 @@
+推荐过程程序入口，main包 main.py,输入参数-companyCode
+1、获取正负样本，在trainset包
+   get_trainset.py 获取正样本是客户打过电话的线索，负样本是挑选删除的不感兴趣的线索
+
+2、特征工程 fea_engingeering包
+   get_feature.py特征预处理
+   samples_label() 得到对应样本的label
+   features_engineering() 得到样本的特征向量
+3、模型，recommend_model
+    logistic_model.py 模型训练过程，使用LinearRegression模型训练
+    评估方法：准确率
