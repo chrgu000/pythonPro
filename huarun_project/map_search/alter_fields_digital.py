@@ -29,7 +29,7 @@ def stat_fields_digital():
     cur_test = conn_test.cursor()
     # 对每一个建筑物统计所需要的字段信息
     buildings = get_buildings()
-    for i in range(0, len(buildings)):
+    for i in range(4000, len(buildings)):
         print("建筑物："+str(i))
         companys = get_companys(buildings[i])
         all_enterprise_stat = len(companys)

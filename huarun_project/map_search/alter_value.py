@@ -18,7 +18,7 @@ collections = db.companys
 def change_():
     conn_test = conn_test_yunketest()
     cur_test = conn_test.cursor()
-    cur_test.execute("select c_id,c_industry,c_rdate,c_capital from company_connection_building")
+    cur_test.execute("select c_id,c_industry,c_rdate,c_capital from company_connection_building ")
     for row in cur_test.fetchall():
         if row[1] == "无":
             cur_test.execute("update company_connection_building set c_industry="+"\""+"保密"+"\""+" where c_id=" +"\""+row[0]+"\"")
@@ -37,6 +37,8 @@ def change_capital():
     cur_test = conn_test.cursor()
     cur_test.execute("select c_id,c_company_name from company_connection_building")
     for r in cur_test.fetchall():
+        count = 0
+        print(count)
         c_name = r[1]
         print(c_name)
         cdate = ""
@@ -44,19 +46,23 @@ def change_capital():
         cstatus = ""
         company_portray = read_mongoid(c_name)
         if company_portray != "-1":
-            if "regDate" in company_portray.keys():
-                rdate = company_portray["regDate"]
-                vdate = timestamp_datetime(rdate)
-                cdate = str(vdate).split(" ")[0]
-            if "regCapital" in company_portray.keys():
-                capital = company_portray["regCapital"]
-            if "status" in company_portray.keys():
-                cstatus = company_portray["status"]
-            cur_test.execute("update company_connection_building set c_capital_detail="+"\""+capital+"\""+", c_cstatus="+"\""+cstatus+"\""+",c_rdate_detail="+"\""+cdate+"\"" +" where c_id="+"\""+r[0]+"\"" )
-            print("update company_connection_building set c_capital_detail="+"\""+capital+"\""+", c_cstatus="+"\""+cstatus+"\""+",c_rdate_detail="+"\""+cdate+"\"" +" where c_id="+"\""+r[0]+"\"" )
-            conn_test.commit()
+            try:
+                if "regDate" in company_portray.keys():
+                    rdate = company_portray["regDate"]
+                    vdate = timestamp_datetime(rdate)
+                    cdate = str(vdate).split(" ")[0]
+                if "regCapital" in company_portray.keys():
+                    capital = company_portray["regCapital"]
+                if "status" in company_portray.keys():
+                    cstatus = company_portray["status"]
+                cur_test.execute("update company_connection_building set c_capital_detail="+"\""+capital+"\""+", c_cstatus="+"\""+cstatus+"\""+",c_rdate_detail="+"\""+cdate+"\"" +" where c_id="+"\""+r[0]+"\"" )
+                conn_test.commit()
+            except Exception as e:
+                print(e)
         else:
             print("error!")
+        count += 1
+
     conn_test.close()
     cur_test.close()
 
