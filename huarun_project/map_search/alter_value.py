@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*
 '''
-将字段中的“无”改为“保密”
+字段内容修改
 '''
 
 import pymysql
 
+# 将c_industry,c_rdate,c_capital字段中的“无”改为“保密”
 def change_():
     conn_test = conn_test_yunketest()
     cur_test = conn_test.cursor()
@@ -20,6 +21,11 @@ def change_():
 
     conn_test.close()
     cur_test.close()
+
+# 将value="0 万元" 修改为null
+def change_capital():
+    conn_test_yunketest()
+
 
 
 def conn_test_yunketest():

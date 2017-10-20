@@ -11,7 +11,7 @@ import pymysql
 def alter_fields_dict():
     conn_test = conn_test_yunketest()
     cur_test = conn_test.cursor()
-    cur_test.execute("select u_id from buildings_info limit 2")
+    cur_test.execute("select u_id from buildings_info")
     for row in cur_test.fetchall():
         print(row[0])
         industry_dict = {}
