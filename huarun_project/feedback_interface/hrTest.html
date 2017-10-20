@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title> title</title>
+</head>
+<body>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
+	<script type="text/javascript">
+		// 测试insertbuilding方法
+		$.post("http://123.56.203.191:8002/insertbuilding", {building_name:"国贸",building_info:"楼宇简介"}, function(data){
+		console.log("loaclhost")
+		console.log(data)
+		})	// // 测试insertbuilding方法
+        
+		
+		// 测试insertconn方法
+		$.post("http://123.56.203.191:8002/insertconn", {belong_building:"建外",companyName:"北京天下有限公司"}, function(data){
+		console.log("loaclhost")
+		console.log(data)
+		})	// // 测试insertconn方法	
+	  
+	
+	</script>	
+</body>
+</html>
