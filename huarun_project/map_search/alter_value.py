@@ -35,31 +35,45 @@ def change_():
 def change_capital():
     conn_test = conn_test_yunketest()
     cur_test = conn_test.cursor()
-    cur_test.execute("select c_id,c_company_name from company_connection_building limit 10")
+    cur_test.execute("select c_id,c_company_name from company_connection_building")
     for r in cur_test.fetchall():
         c_name = r[1]
+        print(c_name)
+        cdate = ""
+        capital = ""
+        cstatus = ""
         company_portray = read_mongoid(c_name)
-        rdate = company_portray["regDate"]
-        vdate = timestamp_datetime(rdate)
-        cdate = str(vdate).split(" ")[0]
-        capital = company_portray["regCapital"]
-        cstatus = company_portray["status"]
-        cur_test.execute("update company_connection_building set c_capital_detal="+capital+", c_catatus="+cstatus+",c_rdate_detail="+cdate +"where c_id="+r[0])
-        conn_test.commit()
-
+        if company_portray != "-1":
+            if "regDate" in company_portray.keys():
+                rdate = company_portray["regDate"]
+                vdate = timestamp_datetime(rdate)
+                cdate = str(vdate).split(" ")[0]
+            if "regCapital" in company_portray.keys():
+                capital = company_portray["regCapital"]
+            if "status" in company_portray.keys():
+                cstatus = company_portray["status"]
+            cur_test.execute("update company_connection_building set c_capital_detail="+"\""+capital+"\""+", c_cstatus="+"\""+cstatus+"\""+",c_rdate_detail="+"\""+cdate+"\"" +" where c_id="+"\""+r[0]+"\"" )
+            print("update company_connection_building set c_capital_detail="+"\""+capital+"\""+", c_cstatus="+"\""+cstatus+"\""+",c_rdate_detail="+"\""+cdate+"\"" +" where c_id="+"\""+r[0]+"\"" )
+            conn_test.commit()
+        else:
+            print("error!")
     conn_test.close()
     cur_test.close()
 
 
 def read_mongoid(name):
-    company_portray = {}
+    company_portray={}
     result = collections.find({"companyPortray.comName": name}, {"companyPortray": 1})
     try:
         for i in result:
             company_portray = i["companyPortray"]
     except Exception as e:
         print(e)
-    return company_portray
+
+    if company_portray == {}:
+        return "-1"
+    else:
+        return company_portray
 
 def conn_test_yunketest():
     conn_test = pymysql.connect(host='rds0710650me01y6d3ogo.mysql.rds.aliyuncs.com',
@@ -84,11 +98,13 @@ def timestamp_datetime(value):
 
 if __name__ == '__main__':
     # change_()
-    company_portray = read_mongoid("霍山县永盛蔬菜种植园")
-    print(company_portray)
-    rdate = company_portray["regDate"]
-    datee = timestamp_datetime(rdate)
-    print(str(datee).split(" ")[0])
-    print(company_portray["regCapital"])
-    print(company_portray["status"])
+    change_capital()
+
+    # company_portray = read_mongoid("北京市至成电子公司")
+    # print(company_portray)
+    # rdate = company_portray["regDate"]
+    # datee = timestamp_datetime(rdate)
+    # print(str(datee).split(" ")[0])
+    # print(company_portray["regCapital"])
+    # print(company_portray["status"])
     pass
