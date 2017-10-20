@@ -36,8 +36,8 @@ def change_capital():
     conn_test = conn_test_yunketest()
     cur_test = conn_test.cursor()
     cur_test.execute("select c_id,c_company_name from company_connection_building")
+    count = 0
     for r in cur_test.fetchall():
-        count = 0
         print(count)
         c_name = r[1]
         print(c_name)
