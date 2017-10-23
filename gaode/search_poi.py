@@ -5,8 +5,7 @@ import urllib.parse as parse
 import json
 
 def search_poi():
-    c=["0","1","2","3","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-
+    c = ["0","1","2","3","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     for i1 in range(0,len(c)):
         for i2 in range(0, len(c)):
             for i3 in range(0, len(c)):
