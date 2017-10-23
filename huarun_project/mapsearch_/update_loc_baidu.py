@@ -23,8 +23,8 @@ def get_buindings():
 
     sql_test = "select u_id,b_building_name,b_building_adr from buildings_info where b_lat<39  limit 3"
     building_uid = []
-    building_name=[]
-    building_addr=[]
+    building_name = []
+    building_addr = []
     cur_test.execute(sql_test)
 
     for row in cur_test.fetchall():
@@ -33,9 +33,9 @@ def get_buindings():
         building_addr.append(row[2])
 
     for k in range(0,len(building_uid)):
-        uid=building_uid[k]
-        name=building_name[k]
-        addr=building_addr[k]
+        uid = building_uid[k]
+        name = building_name[k]
+        addr = building_addr[k]
 
         key0 = "nPPBW9xruVM07MG5B3QLqjpwoPCLtP6E"
         url1 ="http://api.map.baidu.com/geocoder/v2/?&callback=renderOption&output=json&address="+parse.quote(name)+"&city="+parse.quote("北京市")+"&ak="+key0
@@ -47,10 +47,10 @@ def get_buindings():
             #json_geo = get_builds(url2)
             print("**************北京 " + name)
         else:
-            lng=str(json_geo["result"]["location"]["lng"])
-            lat=str(json_geo["result"]["location"]["lat"])
+            lng = str(json_geo["result"]["location"]["lng"])
+            lat = str(json_geo["result"]["location"]["lat"])
             print(str(k) + ":" + uid + ":" + name+":"+lng+":"+lat)
-            update_loc(lng,lat,uid)
+            update_loc(lng, lat, uid)
 
     cur_test.close()
     conn_test.close()
@@ -59,7 +59,7 @@ def get_buindings():
 def get_builds(url1):
     try:
         record_req = req.urlopen(url1, timeout=5)
-        result=record_req.read().decode("utf_8").replace("renderOption&&renderOption","").replace("(","").replace(")","")
+        result = record_req.read().decode("utf_8").replace("renderOption&&renderOption","").replace("(","").replace(")","")
         hjson = json.loads(result)
         return(hjson)
     except Exception as e:

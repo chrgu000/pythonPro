@@ -5,7 +5,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.externals import joblib
 from datetime import datetime
 from datetime import timedelta
+import uuid
 
+def get_uuid(name):
+    uid_ = uuid.uuid3(uuid.NAMESPACE_DNS, name)
+    uid = str(uid_).replace("-", "")
+    return uid
 # 按行读取文件
 def read_from(path):
     file = open(path, encoding='utf8', errors='ignore')
