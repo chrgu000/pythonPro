@@ -1,3 +1,5 @@
+# 获取百度poi
+
 # -*- coding: utf-8 -*
 import urllib
 import urllib.request as req
